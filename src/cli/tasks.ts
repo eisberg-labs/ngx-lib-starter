@@ -120,7 +120,16 @@ export const modifyPackage = (options: TypescriptStarterCLIOptions) => {
   shelljs.ls(path.join(options.projectDir, 'karma.conf.js')).forEach(file => {
     shelljs.sed('-i', 'singleRun: false,', 'singleRun: true,', file);
   });
-  shelljs.ls(path.join(options.projectDir, 'projects', options.projectName, 'karma.conf.js')).forEach(file => {
-    shelljs.sed('-i', 'singleRun: false,', 'singleRun: true,', file);
-  });
+  shelljs
+    .ls(
+      path.join(
+        options.projectDir,
+        'projects',
+        options.projectName,
+        'karma.conf.js'
+      )
+    )
+    .forEach(file => {
+      shelljs.sed('-i', 'singleRun: false,', 'singleRun: true,', file);
+    });
 };

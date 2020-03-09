@@ -66,12 +66,11 @@
   },
   "NOTE": "These dependencies are for the CLI, and will be removed automatically.",
   "dependencies": {
-    "chalk": "^2.4.2",
+    "chalk": "^3.0.0",
     "cpy-cli": "^3.1.0",
-    "del": "^5.0.0",
     "gradient-string": "^1.2.0",
-    "inquirer": "^6.4.1",
-    "ora": "^3.4.0",
+    "inquirer": "^7.0.6",
+    "ora": "^4.0.3",
     "shelljs": "^0.8.3",
     "validate-npm-package-name": "^3.0.0"
   },
