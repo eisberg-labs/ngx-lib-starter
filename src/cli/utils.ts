@@ -89,5 +89,5 @@ export function modifyJsonFile(file, modifyF: (packageFile: any) => any) {
 }
 
 export function getVersion(): string {
-  return require('project-version');
+  return require(path.join(__dirname, '..', '..', 'package.json')).version;
 }
