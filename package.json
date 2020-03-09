@@ -46,7 +46,7 @@
     "release": "standard-version",
     "reset": "git clean -dfx && git reset --hard && npm i",
     "clean": "trash dist test",
-    "prepare-release": "run-s reset test cov:check doc:html version doc:publish"
+    "prepare-release": "run-s reset test cov:check doc:html release doc:publish"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
@@ -71,6 +71,7 @@
     "gradient-string": "^1.2.0",
     "inquirer": "^7.0.6",
     "ora": "^4.0.3",
+    "project-version": "^1.2.0",
     "shelljs": "^0.8.3",
     "validate-npm-package-name": "^3.0.0"
   },
