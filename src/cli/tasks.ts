@@ -111,9 +111,9 @@ export const modifyPackage = (options: TypescriptStarterCLIOptions) => {
     scripts: {
       ...object.scripts,
       'release-alpha': `npm run lint && npm run test && npm --prefix projects/${options.projectName} run release -- --prerelease alpha`,
-      'release-patch': `npm run lint && npm run test && npm --prefix projects/${options.projectName} run release -- --prerelease patch`,
-      'release-minor': `npm run lint && npm run test && npm --prefix projects/${options.projectName} run release -- --prerelease minor`,
-      'release-major': `npm run lint && npm run test && npm --prefix projects/${options.projectName} run release -- --prerelease major`,
+      'release-patch': `npm run lint && npm run test && npm --prefix projects/${options.projectName} run release -- --release-as patch`,
+      'release-minor': `npm run lint && npm run test && npm --prefix projects/${options.projectName} run release -- --release-as minor`,
+      'release-major': `npm run lint && npm run test && npm --prefix projects/${options.projectName} run release -- --release-as major`,
       'build-prod': `npm run lint && npm run test && ng build ${options.projectName} --prod  && cp README.md dist/${options.projectName}/README.md`,
       publish: `npm run build-prod && cd dist/${options.projectName} && npm publish`
     }
