@@ -13,8 +13,8 @@ export const ngGenerate = async (opts: TypescriptStarterCLIOptions) => {
   shelljs.ls('angular.json').forEach(file => {
     shelljs.sed(
       '-i',
-      `"${opts.projectName}"`,
-      `"${opts.projectName}-demo"`,
+      `"${opts.projectName}`,
+      `"${opts.projectName}-demo`,
       file
     );
     modifyJsonFile(file, object => ({
@@ -29,22 +29,24 @@ export const ngGenerate = async (opts: TypescriptStarterCLIOptions) => {
 };
 
 export const generateLicense = async (opts: TypescriptStarterCLIOptions) => {
-  const name = ownerFQ(opts.owner);
-  const web = !opts.owner.website ? '' : `(${opts.owner.website})`;
-  const header = `Copyright (c) ${opts.year} ${name} ${web}`.trim();
-  const licenseBody = getLicense(opts.license).value();
-  if (licenseBody) {
-    const license = `${header}
+  if (opts.license.include) {
+    const name = ownerFQ(opts.owner);
+    const web = !opts.owner.website ? '' : `(${opts.owner.website})`;
+    const header = `Copyright (c) ${opts.year} ${name} ${web}`.trim();
+    const licenseBody = getLicense(opts.license).value();
+    if (licenseBody) {
+      const license = `${header}
 
 ${licenseBody}`;
-    if (!fs.existsSync(opts.projectDir)) {
-      fs.mkdirSync(opts.projectDir);
-    }
-    fs.writeFileSync(path.join(opts.projectDir, 'LICENSE'), license);
-  } else {
-    console.warn(`
+      if (!fs.existsSync(opts.projectDir)) {
+        fs.mkdirSync(opts.projectDir);
+      }
+      fs.writeFileSync(path.join(opts.projectDir, 'LICENSE'), license);
+    } else {
+      console.warn(`
       ${chalk.yellow('Could not generate appropriate license!')}
     `);
+    }
   }
 };
 
@@ -70,7 +72,7 @@ export const modifyReadme = async (options: TypescriptStarterCLIOptions) => {
     shelljs.sed('-i', '{{description}}', options.description, file);
     shelljs.sed('-i', '{{repository}}', options.repository, file);
     shelljs.sed('-i', '{{year}}', options.year, file);
-    shelljs.sed('-i', '{{license}}', getLicense(options.license).name, file);
+    shelljs.sed('-i', '{{license}}', (options.license.include) ? getLicense(options.license).name: '', file);
     shelljs.sed('-i', '{{author}}', options.owner.name, file);
     shelljs.sed('-i', '{{authorWebsite}}', options.owner.website, file);
   });
@@ -99,12 +101,12 @@ export const modifyPackage = (options: TypescriptStarterCLIOptions) => {
 
   modifyJsonFile(path.join(options.projectDir, 'package.json'), object => ({
     ...object,
-    name: options.projectName + '-demo',
+    name: options.projectName,
     description: options.description,
     author: options.owner.name,
     repository: { type: 'git', url: options.repository },
     homepage: options.repository,
-    license: getLicense(options.license).name,
+    license: getLicense(options.license) ? getLicense(options.license).name: undefined,
     keywords: options.keywords,
     scripts: {
       ...object.scripts,
@@ -116,7 +118,6 @@ export const modifyPackage = (options: TypescriptStarterCLIOptions) => {
       publish: `npm run build-prod && cd dist/${options.projectName} && npm publish`
     }
   }));
-
   shelljs.ls(path.join(options.projectDir, 'karma.conf.js')).forEach(file => {
     shelljs.sed('-i', 'singleRun: false,', 'singleRun: true,', file);
   });
