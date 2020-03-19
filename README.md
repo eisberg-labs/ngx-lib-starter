@@ -5,7 +5,7 @@
 
 # Ngx Lib Starter
 
-Interactive Cli for generating angular library seed, inspired by [https://github.com/bitjson/typescript-starter](https://github.com/eisberg-labs/typescript-starter).
+Interactive Cli for generating angular library seed, inspired by [https://github.com/bitjson/typescript-starter](https://github.com/bitjson/typescript-starter).
 
 ## Start Now
 
