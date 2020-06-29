@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { deepStrictEqual } from 'assert';
+import {deepStrictEqual} from 'assert';
 import gradient from 'gradient-string';
 import {
   ownerFQ,
@@ -9,7 +9,7 @@ import {
 } from './models';
 import * as path from 'path';
 import * as shelljs from 'shelljs';
-import { writeFileSync } from 'fs';
+import {writeFileSync} from 'fs';
 
 const coolGradient = gradient('#FFFFFF', '#38AAE6', '#27509B');
 
@@ -43,8 +43,8 @@ export function getIntro(columns: number | undefined): string {
   return columns && columns >= 85
     ? chalk.bold(coolGradient(ascii))
     : columns && columns >= 74
-    ? chalk.bold(coolGradient(asciiSmaller))
-    : `\n${chalk.cyan.bold.underline('typescript-starter')}\n`;
+      ? chalk.bold(coolGradient(asciiSmaller))
+      : `\n${chalk.cyan.bold.underline('typescript-starter')}\n`;
 }
 
 export function objectsEqual(object1, object2): boolean {
