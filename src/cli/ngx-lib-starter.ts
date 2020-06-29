@@ -16,6 +16,7 @@ export async function ngxLibStarter(
   const options = await addInferredOptions(userOptions);
 
   const spinnerPackage = ora('Generating project').start();
+
   const tasks = [
     ngGenerate,
     generateLicense,
@@ -23,6 +24,9 @@ export async function ngxLibStarter(
     modifyReadme,
     modifyPackage
   ];
-  tasks.forEach(task => task(options));
+
+  for (const task of tasks) {
+    await task(options);
+  }
   spinnerPackage.stop();
 }

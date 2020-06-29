@@ -1,3 +1,4 @@
+// tslint:disable:no-console no-if-statement no-expression-statement
 import chalk from 'chalk';
 import {deepStrictEqual} from 'assert';
 import gradient from 'gradient-string';
@@ -69,6 +70,10 @@ export const addInferredOptions = async (
   const ownerFQName = ownerFQ(userOptions.owner);
   const year = new Date().getUTCFullYear().toString();
 
+  console.log(`
+  ${chalk.blue(`Generating a project at ${projectDir} to owner ${ownerFQName}.`)}
+`);
+
   const inferredOptions: TypescriptStarterInferredOptions = {
     projectDir,
     assetsDir,
@@ -76,6 +81,7 @@ export const addInferredOptions = async (
     ownerFQ: ownerFQName,
     year
   };
+
   return {
     ...inferredOptions,
     ...userOptions
