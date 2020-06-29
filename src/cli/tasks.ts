@@ -8,6 +8,7 @@ import { ownerFQ, TypescriptStarterCLIOptions } from './models';
 import { getVersion, modifyJsonFile } from './utils';
 
 export const ngGenerate = async (opts: TypescriptStarterCLIOptions) => {
+  console.log(chalk.blue(`ng new ${opts.projectName} --no-routing --style css`));
   shelljs.exec(`ng new ${opts.projectName} --no-routing --style css`);
   shelljs.cd(opts.projectName);
   shelljs.ls('angular.json').forEach(file => {
