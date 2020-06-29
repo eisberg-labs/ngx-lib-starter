@@ -1,6 +1,6 @@
 {
   "name": "ngx-lib-starter",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Interactive CLI for generating angular library seed",
   "bin": {
     "ngx-lib-starter": "bin/ngx-lib-starter"
